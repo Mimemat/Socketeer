@@ -5,8 +5,8 @@ export const theme = {
     text: '#fff'
   },
   backgrounds: {
-    dark: '#202225',
-    ligth: '#36393f'
+    dark: '#1C1E23',
+    ligth: '#292C33'
   },
   fonts: {
     bold: 'Ubuntu',

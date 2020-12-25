@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, nativeImage } from 'electron'
 import * as path from 'path'
 import * as url from 'url'
 import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer'
@@ -6,10 +6,19 @@ import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electro
 let mainWindow: Electron.BrowserWindow | null
 
 function createWindow () {
+  const icon = nativeImage.createFromPath(`${app.getAppPath()}/build/icon.png`)
+
+  if (app.dock) {
+    app.dock.setIcon(icon)
+  }
+
   mainWindow = new BrowserWindow({
+    icon,
     minWidth: 1100,
     minHeight: 700,
-    backgroundColor: '#191622',
+    backgroundColor: '#1C1E23',
+    frame: false,
+    movable: true,
     webPreferences: {
       nodeIntegration: true
     }

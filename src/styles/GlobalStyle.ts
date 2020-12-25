@@ -1,16 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-  :root {
-    font-size: 80%;
-  }
-
-  
-  @media (min-width: 700px) {
-    :root{
-      font-size: 100%;
-    }
-  }
 
   * {
     margin: 0;
@@ -26,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.backgrounds.dark};
     color: ${(props) => props.theme.colors.text};
     font-family: ${(props) => props.theme.fonts.regular};
+    
     overflow: hidden;
   }
 

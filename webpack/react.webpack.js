@@ -1,14 +1,18 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const nodeExternals = require('webpack-node-externals');
+
 
 const rootPath = path.resolve(__dirname, '..')
 
+
 module.exports = {
+  externals: [nodeExternals()],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     mainFields: ['main', 'module', 'browser']
   },
-  entry: path.resolve(rootPath, 'src', 'App.tsx'),
+  entry: path.resolve(rootPath, 'src', 'index.tsx'),
   target: 'electron-renderer',
   devtool: 'source-map',
   module: {
@@ -37,6 +41,8 @@ module.exports = {
     publicPath: './'
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      template: path.resolve(rootPath, 'index.html')
+    }),
   ]
 }

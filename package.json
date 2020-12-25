@@ -27,6 +27,7 @@
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
     "@commitlint/core": "^9.0.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/react": "^10.4.3",
     "@types/electron-devtools-installer": "^2.2.0",
@@ -65,16 +66,20 @@
     "wait-on": "^5.0.1",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
+    "polished": "^4.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^4.1.0",
     "styled-components": "^5.1.1",
     "ws": "^7.4.1"
   },
   "build": {
     "appId": "your.id",
+    "productName": "Socketeer",
     "mac": {
       "category": "public.app-category.video"
     },
