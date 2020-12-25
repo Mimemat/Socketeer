@@ -106,7 +106,6 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "cross-env CI=true && yarn test --findRelatedTests --bail",
       "git add"
     ]
   }
