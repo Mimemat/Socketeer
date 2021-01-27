@@ -1,6 +1,5 @@
-import styled from 'styled-components'
-
-import { lighten } from 'polished'
+import { lighten } from 'polished';
+import styled from 'styled-components';
 
 export const Container = styled.header`
   width: 100%;
@@ -10,46 +9,36 @@ export const Container = styled.header`
   -webkit-user-select: none;
   -webkit-app-region: drag;
 
-  padding: 1rem;
   align-items: center;
   justify-content: space-between;
 
-  background-color: ${props => props.theme.backgrounds.dark};
-  border-bottom: 1px solid ${props => lighten(0.1, props.theme.backgrounds.ligth)};
+  background-color: ${(props) => props.theme.backgrounds.dark};
+  border-bottom: 1px solid
+    ${(props) => lighten(0.1, props.theme.backgrounds.ligth)};
 
   h1 {
     font-size: 20px;
     margin: 0 auto;
 
-    font-family: ${props => props.theme.fonts.bold};
+    font-family: ${(props) => props.theme.fonts.bold};
     font-weight: 500;
   }
-`
+`;
 
 export const ActionContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-`
+`;
 
-export const ActionButton = styled.button<{color: string}>`
-  background: ${props => props.color};
-  -webkit-app-region: no-drag;
-  border: 0;
-
-  width: 15px;
-  height: 15px;
-  border-radius: 100%;
-
+const ActionButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
 
   cursor: pointer;
-
-  & + button {
-    margin-left: 8px;
-  }
+  border: 0;
+  -webkit-app-region: no-drag;
 
   &:active {
     opacity: 0.6;
@@ -58,5 +47,37 @@ export const ActionButton = styled.button<{color: string}>`
   &:focus {
     outline: 0;
   }
+`;
 
-`
+export const WindowsActionButton = styled(ActionButton)<{ hover?: string }>`
+  height: 40px;
+  background-color: transparent;
+  color: ${(props) => props.theme.colors.text};
+
+  padding: 0.3rem;
+
+  &:hover {
+    background-color: ${(props) => props.hover || 'rgba(255, 255, 255, 0.3)'};
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const MacActionButton = styled(ActionButton)<{ color: string }>`
+  width: 15px;
+  height: 15px;
+  background: ${(props) => props.color};
+
+  border-radius: 100%;
+
+  & + button {
+    margin-left: 8px;
+  }
+
+  &:first-child {
+    margin-left: 1rem;
+  }
+`;

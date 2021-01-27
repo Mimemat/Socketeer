@@ -8,7 +8,7 @@
 
 ## Layout
 
-![Layout](https://i.imgur.com/HiyZ9g8.png)
+![Layout](https://i.imgur.com/43JcHLp.png)
 [Figma link](https://www.figma.com/file/RvMRH34SNyzKMUBI9Fa6x8/Socketeer?node-id=0%3A1)
 
 ## Running

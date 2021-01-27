@@ -1,27 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { Websocket } from '../services/ws/Websocket'
-import Header from './Header'
-import { Container } from './styles'
+import React from 'react';
 
-const websocket = new Websocket()
+import Header from './Header';
+import Info from './Info';
+import Sidebar from './Sidebar';
+
+import { Container, Content } from './styles';
 
 const Screen: React.FC = () => {
-  const [msgs, setMsgs] = useState<string[]>([])
-
-  useEffect(() => {
-    websocket.connect({
-      url: 'ws://localhost:3333',
-      onMsg: (data) => setMsgs(oldMgs => [...oldMgs, data]),
-      onError: () => alert('Bad url')
-    })
-  }, [])
-
   return (
     <Container>
       <Header />
-      {msgs.map((msg, index) => <p key={index}>{msg}</p>)}
+      <Content>
+        <Sidebar />
+        <Info />
+      </Content>
     </Container>
-  )
-}
+  );
+};
 
-export default Screen
+export default Screen;

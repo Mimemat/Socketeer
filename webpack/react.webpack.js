@@ -1,18 +1,22 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const nodeExternals = require('webpack-node-externals');
-
 
 const rootPath = path.resolve(__dirname, '..')
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  externals: [nodeExternals()],
+  externals: {
+    bufferutil: "bufferutil",
+    "utf-8-validate": "utf-8-validate",
+  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     mainFields: ['main', 'module', 'browser']
   },
-  entry: path.resolve(rootPath, 'src', 'index.tsx'),
+  entry: path.resolve(rootPath, 'src', 'App.tsx'),
   target: 'electron-renderer',
   devtool: 'source-map',
   module: {
@@ -44,5 +48,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(rootPath, 'index.html')
     }),
-  ]
+    isDevelopment && new ReactRefreshWebpackPlugin({
+      forceEnable: true
+    }),
+  ].filter(Boolean)
 }

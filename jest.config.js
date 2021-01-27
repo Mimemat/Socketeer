@@ -1,7 +1,7 @@
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { pathsToModuleNameMapper } = require('ts-jest/utils');
 
-const { name } = require('./package.json')
-const { compilerOptions } = require('./tsconfig.json')
+const { name } = require('./package.json');
+const { compilerOptions } = require('./tsconfig.json');
 
 module.exports = {
   clearMocks: true,
@@ -9,5 +9,7 @@ module.exports = {
   name,
   verbose: true,
   preset: 'ts-jest',
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/src/' })
-}
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: '<rootDir>/src/',
+  }),
+};

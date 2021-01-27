@@ -1,17 +1,21 @@
-import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import React from 'react';
+import { render } from 'react-dom';
 
-import { GlobalStyle } from './styles/GlobalStyle'
-import Screen from './screen'
-import { theme } from './styles/theme'
+import { RecoilRoot } from 'recoil';
+import { ThemeProvider } from 'styled-components';
 
-const App: React.FC = () => {
-  return (
+import Screen from './screen';
+
+import { GlobalStyle } from './styles/GlobalStyle';
+import { theme } from './styles/theme';
+
+const App: React.FC = () => (
+  <RecoilRoot>
     <ThemeProvider theme={theme}>
       <Screen />
       <GlobalStyle />
     </ThemeProvider>
-  )
-}
+  </RecoilRoot>
+);
 
-export default App
+render(<App />, document.getElementById('root'));
