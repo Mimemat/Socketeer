@@ -37,9 +37,32 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.p`
+  display: flex;
+  justify-content: space-between;
+
   font-size: 18px;
   font-weight: 500;
 
   padding: 0px 8px;
   padding-bottom: 4px;
+
+  button {
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #e96379;
+    border-radius: 4px;
+
+    transition: filter 0.2s ease-in;
+    padding: 0 0.05rem;
+
+    &:hover {
+      filter: brightness(115%);
+    }
+  }
 `;

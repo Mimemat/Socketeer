@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 
 import { selectedConnectionAtom } from '../../../atoms/connections';
 import Dropdown, { IDropdownHandles } from '../../../components/Dropdown';
+import { useToast } from '../../../contexts/toast';
 import { useWs } from '../../../contexts/ws';
 
 import { ConnectButton, Container, URLBar } from './styles';
@@ -16,16 +17,20 @@ const items = [
 
 const Header: React.FC = () => {
   const { connect, connected, disconnect } = useWs();
+  const { addToast } = useToast();
 
   const [selectedConnection] = useRecoilState(selectedConnectionAtom);
   const drodownRef = useRef<IDropdownHandles>(null);
   const urlBarRef = useRef<HTMLInputElement>(null);
 
-  const handleConnect = useCallback((): void => {
+  const handleConnect = useCallback((): unknown => {
     if (connected) return disconnect();
     if (!urlBarRef.current?.value) {
-      // TODO: add toasts
-      return console.error('URL required');
+      return addToast({
+        type: 'info',
+        description: 'You need to add an url in order to connect to it!',
+        title: 'URL required',
+      });
     }
     return connect(urlBarRef.current.value);
   }, [connected]);
