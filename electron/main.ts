@@ -24,6 +24,7 @@ function createWindow() {
     movable: true,
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   });
 
