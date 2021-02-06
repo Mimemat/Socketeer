@@ -39,12 +39,15 @@ export const WsProvider: React.FC = ({ children }) => {
     }
   }, [ws]);
 
-  const send = useCallback((data: string) => {
-    if (ws) {
-      console.log(data);
-      ws.send(data);
-    }
-  }, []);
+  const send = useCallback(
+    (data: string) => {
+      if (ws) {
+        console.log(data);
+        ws.send(data);
+      }
+    },
+    [ws]
+  );
 
   const connect = useCallback((url: string): void => {
     const socket = new Ws(url);

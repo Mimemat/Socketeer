@@ -18,7 +18,9 @@ export interface IConnectionProps {
 const Connection: React.FC<IConnectionProps> = ({ connection }) => {
   const [selected, setSelected] = useRecoilState(selectedConnectionAtom);
 
-  const handleClick = () => setSelected(connection);
+  const handleClick = () => {
+    setSelected(connection);
+  };
 
   return (
     <Container

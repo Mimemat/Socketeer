@@ -9,6 +9,7 @@ import {
   IConnection,
   selectedConnectionAtom,
 } from '../../atoms/connections';
+import { createConnection } from '../../services/connections/CreateConnectionService';
 import Connection from './Connection';
 
 import { Container, Header } from './styles';
@@ -25,7 +26,9 @@ const Sidebar: React.FC = () => {
       url: 'ws://localhost:3333',
     };
 
-    setConnections((old) => [...old, newConnection]);
+    const newConnections = createConnection(newConnection);
+
+    setConnections(newConnections);
     setSelected(newConnection);
   }, []);
 

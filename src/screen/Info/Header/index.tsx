@@ -1,12 +1,16 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { FiCheck } from 'react-icons/fi';
 
 import { useRecoilState } from 'recoil';
 
-import { selectedConnectionAtom } from '../../../atoms/connections';
+import {
+  connectionAtom,
+  selectedConnectionAtom,
+} from '../../../atoms/connections';
 import Dropdown, { IDropdownHandles } from '../../../components/Dropdown';
 import { useToast } from '../../../contexts/toast';
 import { useWs } from '../../../contexts/ws';
+import { updateConnection } from '../../../services/connections/UpdateConnnectionsService';
 
 import { ConnectButton, Container, URLBar } from './styles';
 
@@ -19,7 +23,10 @@ const Header: React.FC = () => {
   const { connect, connected, disconnect } = useWs();
   const { addToast } = useToast();
 
-  const [selectedConnection] = useRecoilState(selectedConnectionAtom);
+  const [selectedConnection, setSelectedConnection] = useRecoilState(
+    selectedConnectionAtom
+  );
+  const [_, setConnections] = useRecoilState(connectionAtom);
   const drodownRef = useRef<IDropdownHandles>(null);
   const urlBarRef = useRef<HTMLInputElement>(null);
 
@@ -32,14 +39,33 @@ const Header: React.FC = () => {
         title: 'URL required',
       });
     }
-    return connect(urlBarRef.current.value);
-  }, [connected]);
+    const { value } = urlBarRef.current;
+    if (selectedConnection?.url !== value && selectedConnection) {
+      const updatedConnection = {
+        ...selectedConnection,
+        url: value,
+      };
+
+      const updatedConnections = updateConnection(
+        selectedConnection.id,
+        updatedConnection
+      );
+      setConnections(updatedConnections);
+      setSelectedConnection(updatedConnection);
+    }
+    return connect(value);
+  }, [connected, selectedConnection]);
+
+  useEffect(() => {
+    return disconnect();
+  }, []);
 
   return (
     <Container>
       <Dropdown ref={drodownRef} items={items} />
 
       <URLBar
+        key={selectedConnection?.id}
         defaultValue={selectedConnection?.url}
         ref={urlBarRef}
         type="text"
