@@ -14,6 +14,9 @@
     "sourceMap": true,
     "outDir": "./dist",
     "strict": true ,
+    "types": ["node", "jest"],
     "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {}
   }
 }
