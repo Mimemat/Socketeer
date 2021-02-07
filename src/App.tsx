@@ -10,7 +10,7 @@ import Screen from './screen';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { theme } from './styles/theme';
 
-const App: React.FC = () => (
+export const App: React.FC = () => (
   <RecoilRoot>
     <ThemeProvider theme={theme}>
       <ToastProvider>
