@@ -2,7 +2,7 @@ import React from 'react';
 import { FiX } from 'react-icons/fi';
 import { useTransition, animated } from 'react-spring';
 
-import { useWs } from '../../../contexts/ws';
+import { useWs } from '@contexts/ws';
 
 import { Container, Title, Content } from './styles';
 

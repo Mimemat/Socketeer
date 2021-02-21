@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { FiSend } from 'react-icons/fi';
 
-import { useWs } from '../../../contexts/ws';
+import { useWs } from '@contexts/ws';
 
 import { Container, Content, Title } from './styles';
 

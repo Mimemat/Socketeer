@@ -1,4 +1,5 @@
 const path = require('path')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const nodeExternals = require('webpack-node-externals');
@@ -14,7 +15,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    mainFields: ['main', 'module', 'browser']
+    mainFields: ['main', 'module', 'browser'],
+    plugins: [new TsconfigPathsPlugin()]
   },
   entry: path.resolve(rootPath, 'src', 'App.tsx'),
   target: 'electron-renderer',

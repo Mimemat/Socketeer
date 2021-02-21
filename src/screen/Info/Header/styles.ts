@@ -1,7 +1,7 @@
 import { shade } from 'polished';
 import styled from 'styled-components';
 
-import Button from '../../../components/Button';
+import Button from '@components/Button';
 
 interface IButtonProps {
   connected: boolean;

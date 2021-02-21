@@ -2,7 +2,8 @@ import React, { memo, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { useTransition } from 'react-spring';
 
-import { ToastMessage } from '../../contexts/toast';
+import { ToastMessage } from '@contexts/toast';
+
 import Toast from './Toast';
 
 import { Container } from './styles';

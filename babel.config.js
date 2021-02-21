@@ -14,6 +14,14 @@ module.exports = (api) => {
           regenerator: true,
         },
       ],
+      ['module-resolver', {
+        alias: {
+          '~/*': './src/',
+          '@components/*': './src/components/*',
+          '@contexts/*': './src/contexts/*',
+          '@atoms/*': './src/atoms/*'
+        }
+      }],
       !api.env('production') && 'react-refresh/babel',
     ].filter(Boolean),
   };

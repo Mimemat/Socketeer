@@ -2,8 +2,9 @@ import React from 'react';
 
 import { useRecoilState } from 'recoil';
 
-import { selectedConnectionAtom } from '../../atoms/connections';
-import { WsProvider } from '../../contexts/ws';
+import { selectedConnectionAtom } from '@atoms/connections';
+import { WsProvider } from '@contexts/ws';
+
 import Header from './Header';
 import Messages from './Messages';
 import SendBox from './SendBox';

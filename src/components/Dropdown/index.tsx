@@ -9,12 +9,12 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
 import { Container, Header, List, ListContainer, ListItem } from './styles';
 
-interface IDropdownItem {
+export interface IDropdownItem {
   value: string;
   label: string;
 }
 
-interface IDropdownProps {
+export interface IDropdownProps {
   items: IDropdownItem[];
 }
 
@@ -52,6 +52,7 @@ const Dropdown: React.ForwardRefRenderFunction<
 
   return (
     <Container
+      className="dropdown"
       tabIndex={0}
       onClick={() => toggle()}
       onBlur={() => toggle(false)}

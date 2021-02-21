@@ -3,13 +3,11 @@ import { FiCheck } from 'react-icons/fi';
 
 import { useRecoilState } from 'recoil';
 
-import {
-  connectionAtom,
-  selectedConnectionAtom,
-} from '../../../atoms/connections';
-import Dropdown, { IDropdownHandles } from '../../../components/Dropdown';
-import { useToast } from '../../../contexts/toast';
-import { useWs } from '../../../contexts/ws';
+import { connectionAtom, selectedConnectionAtom } from '@atoms/connections';
+import Dropdown, { IDropdownHandles } from '@components/Dropdown';
+import { useToast } from '@contexts/toast';
+import { useWs } from '@contexts/ws';
+
 import { updateConnection } from '../../../services/connections/UpdateConnnectionsService';
 
 import { ConnectButton, Container, URLBar } from './styles';

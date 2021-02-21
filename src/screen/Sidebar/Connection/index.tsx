@@ -4,10 +4,7 @@ import { SiSocketDotIo } from 'react-icons/si';
 
 import { useRecoilState } from 'recoil';
 
-import {
-  IConnection,
-  selectedConnectionAtom,
-} from '../../../atoms/connections';
+import { IConnection, selectedConnectionAtom } from '@atoms/connections';
 
 import { Container } from './styles';
 

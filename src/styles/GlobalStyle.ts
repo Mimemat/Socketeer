@@ -31,6 +31,7 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     user-select: none;
+    
     cursor: ew-resize;
     position: absolute;
     font-size: 24px;
@@ -49,4 +50,34 @@ export const GlobalStyle = createGlobalStyle`
     top: 50%;
     transform: translateY(-50%);
   }
+
+  .modal-overlay {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    width: 500px;
+    background: ${(props) => props.theme.backgrounds.ligth};
+    border: 1px solid ${(props) => props.theme.backgrounds.dark};
+
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+    
+    &:focus {
+      outline: 0;
+    }
+  }
+
 `;
