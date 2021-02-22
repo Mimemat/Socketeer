@@ -52,6 +52,6 @@ yarn dev
 - [ ] Socketio compatibility
 - [ ] WS headers
 - [ ] Better animations
-- [ ] Right-Click Connection
+- [x] Right-Click Connection
 - [x] Create Connection modal
 - [x] Connection storing
