@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      - add_github_build_actions
-
 
 jobs:
   release:
