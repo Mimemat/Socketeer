@@ -21,7 +21,8 @@
       "~/*": ["/"],
       "@components/*": ["components/*"],
       "@contexts/*": ["contexts/*"],
-      "@atoms/*": ["atoms/*"]
+      "@atoms/*": ["atoms/*"],
+      "@services/*": ["services/*"]
     }
   }
 }

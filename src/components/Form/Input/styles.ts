@@ -1,7 +1,11 @@
 import { lighten, shade } from 'polished';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface IContainerProps {
+  isError?: boolean;
+}
+
+export const Container = styled.div<IContainerProps>`
   display: flex;
   flex-direction: column;
 
@@ -24,12 +28,19 @@ export const Container = styled.div`
 
     padding: 0.4rem 0.5rem;
     border-radius: 4px;
-    border: 1px solid ${(props) => shade(0.1, props.theme.backgrounds.dark)};
+    border: 1px solid
+      ${(props) =>
+        shade(0.1, props.isError ? '#e96379' : props.theme.backgrounds.dark)};
 
     transition: border-color 0.2s ease-in;
 
     &:focus {
       border-color: ${(props) => lighten(0.05, props.theme.backgrounds.ligth)};
+    }
+
+    &::placeholder {
+      color: ${(props) =>
+        shade(0.3, props.isError ? '#e96379' : props.theme.colors.text)};
     }
   }
 `;

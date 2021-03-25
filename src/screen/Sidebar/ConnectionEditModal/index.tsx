@@ -1,13 +1,12 @@
 import React, { forwardRef, useRef, RefObject } from 'react';
 
 import { useRecoilState } from 'recoil';
-import { v4 as uuid } from 'uuid';
 
-import { connectionAtom } from '@atoms/connections';
+import { connectionAtom, IConnection } from '@atoms/connections';
 import Dropdown from '@components/Form/Dropdown';
 import Input from '@components/Form/Input';
 import Modal, { IModalHandles } from '@components/Modal';
-import { createConnection } from '@services/connections/CreateConnectionService';
+import { updateConnection } from '@services/connections/UpdateConnnectionsService';
 import { FormHandles, SubmitHandler } from '@unform/core';
 
 import { Container, Form, InputGroup, SubmitButton } from './styles';
@@ -18,10 +17,14 @@ type FormData = {
   type: 'io' | 'ws';
 };
 
-const ConnectionModal: React.ForwardRefRenderFunction<IModalHandles> = (
-  _,
-  ref
-) => {
+type EditModalProps = {
+  connection: IConnection;
+};
+
+const ConnectionEditModal: React.ForwardRefRenderFunction<
+  IModalHandles,
+  EditModalProps
+> = ({ connection }, ref) => {
   const [__, setConnections] = useRecoilState(connectionAtom);
 
   const formRef = useRef<FormHandles>(null);
@@ -31,8 +34,7 @@ const ConnectionModal: React.ForwardRefRenderFunction<IModalHandles> = (
 
     // TODO: Add validation
 
-    const newConnections = createConnection({
-      id: uuid(),
+    const newConnections = updateConnection(connection.id, {
       name,
       url,
       type,
@@ -46,12 +48,22 @@ const ConnectionModal: React.ForwardRefRenderFunction<IModalHandles> = (
   return (
     <Modal ref={ref}>
       <Container>
-        <h1>New Connection</h1>
+        <h1>Update Server</h1>
 
         <Form onSubmit={handleSubmit} ref={formRef}>
-          <Input label="URL" name="url" placeholder="Insert URL" />
+          <Input
+            defaultValue={connection.url}
+            label="URL"
+            name="url"
+            placeholder="Insert URL"
+          />
           <InputGroup>
-            <Input label="Name" name="name" placeholder="Insert name" />
+            <Input
+              defaultValue={connection.name}
+              label="Name"
+              name="name"
+              placeholder="Insert name"
+            />
             <Dropdown
               label="Type"
               name="type"
@@ -62,11 +74,11 @@ const ConnectionModal: React.ForwardRefRenderFunction<IModalHandles> = (
             />
           </InputGroup>
 
-          <SubmitButton type="submit">Create</SubmitButton>
+          <SubmitButton type="submit">Update</SubmitButton>
         </Form>
       </Container>
     </Modal>
   );
 };
 
-export default forwardRef(ConnectionModal);
+export default forwardRef(ConnectionEditModal);

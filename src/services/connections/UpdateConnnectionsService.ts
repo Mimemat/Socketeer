@@ -4,19 +4,20 @@ import { ConnectionStore } from '../../store/connnections';
 
 export function updateConnection(
   id: string,
-  newConnection: IConnection
+  updatedConnection: Omit<IConnection, 'id'>
 ): IConnection[] {
-  const currentConnections = ConnectionStore.get('connections') as Array<
-    IConnection
-  >;
+  const currentConnections = ConnectionStore.get(
+    'connections'
+  ) as Array<IConnection>;
 
   const foundIndex = currentConnections.findIndex(
     (findConnection) => findConnection.id === id
   );
 
-  currentConnections[foundIndex] = newConnection;
-
-  console.log(currentConnections);
+  currentConnections[foundIndex] = {
+    id,
+    ...updatedConnection,
+  };
 
   ConnectionStore.set('connections', currentConnections);
 

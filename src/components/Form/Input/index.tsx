@@ -12,7 +12,13 @@ type InputProps = JSX.IntrinsicElements['input'] & Props;
 
 const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const {
+    fieldName,
+    defaultValue,
+    registerField,
+    error,
+    clearError,
+  } = useField(name);
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -21,13 +27,15 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
     });
   }, [fieldName, registerField]);
   return (
-    <Container className="input">
+    <Container isError={!!error} className="input">
       <p>{label}</p>
       <input
         id={fieldName}
         ref={inputRef}
         defaultValue={defaultValue}
+        onFocus={clearError}
         {...rest}
+        placeholder={error || rest.placeholder}
       />
     </Container>
   );

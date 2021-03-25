@@ -5,7 +5,6 @@ export const Container = styled.button`
   justify-content: center;
   align-items: center;
 
-  background-color: ${(props) => props.theme.backgrounds.dark};
   color: ${(props) => props.theme.colors.text};
   padding: 0.4rem;
 
@@ -17,7 +16,17 @@ export const Container = styled.button`
   cursor: pointer;
   outline: 0;
 
+  transition: filter 0.2s ease-out;
+
   svg {
     margin-left: 8px;
+  }
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+
+  &:active {
+    filter: brightness(1.1);
   }
 `;

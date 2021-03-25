@@ -1,30 +1,43 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { ContextMenuTrigger } from 'react-contextmenu';
-import { FiGlobe, FiTrash } from 'react-icons/fi';
+import { FiGlobe, FiPaperclip, FiTrash } from 'react-icons/fi';
 import { SiSocketDotIo } from 'react-icons/si';
 
 import { useRecoilState } from 'recoil';
-import { deleteConnection } from 'services/connections/DeleteConnectionService';
 
 import {
   connectionAtom,
   IConnection,
   selectedConnectionAtom,
 } from '@atoms/connections';
+import { IModalHandles } from '@components/Modal';
+import { deleteConnection } from '@services/connections/DeleteConnectionService';
 
-import { ConnectionMenu, Container, DeleteMenuItem } from './styles';
+import ConnectionEditModal from '../ConnectionEditModal';
+
+import {
+  ConnectionMenu,
+  Container,
+  DeleteMenuItem,
+  UpdateMenuItem,
+} from './styles';
 
 export interface IConnectionProps {
   connection: IConnection;
 }
 
 const Connection: React.FC<IConnectionProps> = ({ connection }) => {
+  const modalRef = useRef<IModalHandles>(null);
   const [selected, setSelected] = useRecoilState(selectedConnectionAtom);
   const [connections, setConnections] = useRecoilState(connectionAtom);
 
   const handleClick = () => {
     setSelected(connection);
   };
+
+  const handleUpdate = useCallback(() => {
+    return modalRef.current?.toggle(true);
+  }, []);
 
   const handleDelete = useCallback(() => {
     if (selected?.id === connection.id) {
@@ -54,7 +67,12 @@ const Connection: React.FC<IConnectionProps> = ({ connection }) => {
           <p>Delete</p>
           <FiTrash />
         </DeleteMenuItem>
+        <UpdateMenuItem onClick={handleUpdate}>
+          <p>Edit</p>
+          <FiPaperclip />
+        </UpdateMenuItem>
       </ConnectionMenu>
+      <ConnectionEditModal ref={modalRef} connection={connection} />
     </>
   );
 };

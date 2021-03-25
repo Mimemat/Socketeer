@@ -28,20 +28,12 @@ const Header: React.FC = () => {
   const drodownRef = useRef<IDropdownHandles>(null);
   const urlBarRef = useRef<HTMLInputElement>(null);
 
-  const handleConnect = useCallback((): unknown => {
-    if (connected) return disconnect();
-    if (!urlBarRef.current?.value) {
-      return addToast({
-        type: 'info',
-        description: 'You need to add an url in order to connect to it!',
-        title: 'URL required',
-      });
-    }
-    const { value } = urlBarRef.current;
+  const handleUpdate = useCallback(() => {
+    const value = urlBarRef?.current?.value;
     if (selectedConnection?.url !== value && selectedConnection) {
-      const updatedConnection = {
+      const { id: _id, ...updatedConnection } = {
         ...selectedConnection,
-        url: value,
+        url: value || 'http://localhost:3333',
       };
 
       const updatedConnections = updateConnection(
@@ -49,14 +41,30 @@ const Header: React.FC = () => {
         updatedConnection
       );
       setConnections(updatedConnections);
-      setSelectedConnection(updatedConnection);
+      setSelectedConnection({
+        id: selectedConnection.id,
+        ...updatedConnection,
+      });
     }
+  }, [selectedConnection]);
+
+  const handleConnect = useCallback((): unknown => {
+    if (connected) return disconnect();
+    const value = urlBarRef.current?.value;
+    if (!value) {
+      return addToast({
+        type: 'info',
+        description: 'You need to add an url in order to connect to it!',
+        title: 'URL required',
+      });
+    }
+    handleUpdate();
     return connect(value);
   }, [connected, selectedConnection]);
 
   useEffect(() => {
-    return disconnect();
-  }, []);
+    return disconnect;
+  }, [selectedConnection]);
 
   return (
     <Container>

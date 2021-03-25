@@ -72,4 +72,10 @@ export const ConnectionMenu = styled(ContextMenu)`
 
 export const DeleteMenuItem = styled(MenuItem)`
   color: #e96379;
+  outline: 0;
+`;
+
+export const UpdateMenuItem = styled(MenuItem)`
+  color: #e7de79;
+  outline: 0;
 `;

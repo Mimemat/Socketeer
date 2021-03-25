@@ -14,6 +14,7 @@
     "build:electron": "cross-env NODE_ENV=production webpack --config webpack/electron.webpack.js",
     "build:react": "cross-env NODE_ENV=production webpack --config webpack/react.webpack.js",
     "package": "npm-run-all build package:dist",
+    "package:exe": "electron-builder build --publish never",
     "package:dist": "electron-builder --dir",
     "test": "jest",
     "lint:fix": "eslint . --fix"
@@ -98,13 +99,20 @@
     "socket.io": "^3.1.0",
     "styled-components": "^5.1.1",
     "uuid": "^8.3.2",
-    "ws": "^7.4.1"
+    "ws": "^7.4.1",
+    "yup": "^0.32.9"
   },
   "build": {
-    "appId": "your.id",
+    "appId": "com.mimemat.socketeer",
     "productName": "Socketeer",
     "mac": {
       "category": "public.app-category.video"
+    },
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ]
     },
     "directories": {
       "output": "packages"

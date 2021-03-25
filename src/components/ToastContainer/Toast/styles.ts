@@ -47,7 +47,7 @@ export const Container = styled(animated.div)<ContainerProps>`
       font-size: 14px;
       font-weight: 500;
     }
-    
+
     p {
       margin-top: 4px;
       font-size: 12px;
@@ -57,13 +57,15 @@ export const Container = styled(animated.div)<ContainerProps>`
     }
   }
   button {
+    background: transparent;
+
     position: absolute;
     right: 8px;
     top: 18px;
 
     opacity: 0.6;
     border: 0;
-    background: transparent;
+    outline: 0;
 
     color: inherit;
     cursor: pointer;
