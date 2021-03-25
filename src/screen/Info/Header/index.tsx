@@ -18,7 +18,7 @@ const items = [
 ];
 
 const Header: React.FC = () => {
-  const { connect, connected, disconnect } = useWs();
+  const { connect, connected, disconnect, clearMsgs } = useWs();
   const { addToast } = useToast();
 
   const [selectedConnection, setSelectedConnection] = useRecoilState(
@@ -63,7 +63,10 @@ const Header: React.FC = () => {
   }, [connected, selectedConnection]);
 
   useEffect(() => {
-    return disconnect;
+    return () => {
+      clearMsgs();
+      disconnect();
+    };
   }, [selectedConnection]);
 
   return (
