@@ -1,5 +1,6 @@
 {
   "name": "socketeer",
+  "author": "Mimemat <hyatomimemat@gmail.com>",
   "version": "1.0.0",
   "description": "A GUI for websockets",
   "main": "./dist/main.js",
@@ -116,7 +117,6 @@
       ]
     },
     "linux": {
-      "icon": "build/icon.png",
       "target": [
           "deb",
           "AppImage"
