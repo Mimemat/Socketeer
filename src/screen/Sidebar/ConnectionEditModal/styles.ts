@@ -1,7 +1,9 @@
+import { shade } from 'polished';
 import styled from 'styled-components';
 
-import Button from '@components/Button';
 import { Form as Unform } from '@unform/web';
+
+import Button from '@components/Button';
 
 export const Container = styled.div`
   flex: 1;
@@ -10,6 +12,12 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  .dropdown {
+    background-color: ${(props) => props.theme.backgrounds.dark};
+    border-radius: 4px;
+    border: 1px solid ${(props) => shade(0.1, props.theme.backgrounds.dark)};
+  }
 
   h1 {
     margin: auto auto 2rem;

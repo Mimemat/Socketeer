@@ -4,6 +4,7 @@ import React, {
   useMemo,
   useState,
   useImperativeHandle,
+  useEffect,
 } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
@@ -16,6 +17,7 @@ export interface IDropdownItem {
 
 export interface IDropdownProps {
   items: IDropdownItem[];
+  defaultValue?: number;
 }
 
 export interface IDropdownHandles {
@@ -25,9 +27,15 @@ export interface IDropdownHandles {
 const Dropdown: React.ForwardRefRenderFunction<
   IDropdownHandles,
   IDropdownProps
-> = ({ items }, ref) => {
-  const [selectedItem, setSelectedItem] = useState<IDropdownItem>(items[0]);
+> = ({ items, defaultValue }, ref) => {
+  const [selectedItem, setSelectedItem] = useState<IDropdownItem>(
+    items[defaultValue || 0]
+  );
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    setSelectedItem(items[defaultValue || 0]);
+  }, [defaultValue]);
 
   const toggle = useCallback(
     (newState?: boolean) => {

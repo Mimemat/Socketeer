@@ -53,6 +53,7 @@ module.exports = {
         groups: [
           '/^react/',
           'module',
+          '/@unform/*/',
           '/@sentry/node/',
           '/@shared/',
           '/^@/',

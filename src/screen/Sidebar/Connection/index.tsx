@@ -72,7 +72,7 @@ const Connection: React.FC<IConnectionProps> = ({ connection }) => {
           <FiPaperclip />
         </UpdateMenuItem>
       </ConnectionMenu>
-      <ConnectionEditModal ref={modalRef} connection={connection} />
+      <ConnectionEditModal connection={connection} ref={modalRef} />
     </>
   );
 };

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
+import { useField } from '@unform/core';
+
 import Dropdown, {
   IDropdownHandles,
   IDropdownProps,
 } from '@components/Dropdown';
-import { useField } from '@unform/core';
 
 import { Container } from './styles';
 

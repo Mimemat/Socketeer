@@ -3,12 +3,13 @@ import React, { forwardRef, useRef, RefObject } from 'react';
 import { useRecoilState } from 'recoil';
 import { v4 as uuid } from 'uuid';
 
+import { FormHandles, SubmitHandler } from '@unform/core';
+
 import { connectionAtom } from '@atoms/connections';
 import Dropdown from '@components/Form/Dropdown';
 import Input from '@components/Form/Input';
 import Modal, { IModalHandles } from '@components/Modal';
 import { createConnection } from '@services/connections/CreateConnectionService';
-import { FormHandles, SubmitHandler } from '@unform/core';
 
 import { Container, Form, InputGroup, SubmitButton } from './styles';
 

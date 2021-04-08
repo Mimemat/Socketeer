@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { FiCheck } from 'react-icons/fi';
 
 import { useRecoilState } from 'recoil';
+import { dropdownItems } from 'screen/Sidebar/ConnectionEditModal';
 
 import { connectionAtom, selectedConnectionAtom } from '@atoms/connections';
 import Dropdown, { IDropdownHandles } from '@components/Dropdown';
@@ -12,11 +13,6 @@ import { updateConnection } from '../../../services/connections/UpdateConnnectio
 
 import { ConnectButton, Container, URLBar } from './styles';
 
-const items = [
-  { label: 'Websocket', value: 'ws' },
-  { label: 'Socket.io', value: 'io' },
-];
-
 const Header: React.FC = () => {
   const { connect, connected, disconnect, clearMsgs } = useWs();
   const { addToast } = useToast();
@@ -25,15 +21,21 @@ const Header: React.FC = () => {
     selectedConnectionAtom
   );
   const [_, setConnections] = useRecoilState(connectionAtom);
-  const drodownRef = useRef<IDropdownHandles>(null);
+  const dropdownRef = useRef<IDropdownHandles>(null);
   const urlBarRef = useRef<HTMLInputElement>(null);
 
   const handleUpdate = useCallback(() => {
     const value = urlBarRef?.current?.value;
-    if (selectedConnection?.url !== value && selectedConnection) {
+    const type = dropdownRef.current?.selected.value as 'ws' | 'io';
+    if (
+      (selectedConnection?.url !== value || selectedConnection?.type) !==
+        type &&
+      selectedConnection
+    ) {
       const { id: _id, ...updatedConnection } = {
         ...selectedConnection,
         url: value || 'http://localhost:3333',
+        type: dropdownRef.current?.selected.value as 'ws' | 'io',
       };
 
       const updatedConnections = updateConnection(
@@ -70,11 +72,17 @@ const Header: React.FC = () => {
   }, [selectedConnection]);
 
   return (
-    <Container>
-      <Dropdown ref={drodownRef} items={items} />
+    <Container key={selectedConnection?.id}>
+      <Dropdown
+        ref={dropdownRef}
+        items={dropdownItems}
+        defaultValue={dropdownItems.findIndex(
+          (item) => item.value === selectedConnection?.type
+        )}
+      />
 
       <URLBar
-        key={selectedConnection?.id}
+        key={selectedConnection?.url}
         defaultValue={selectedConnection?.url}
         ref={urlBarRef}
         type="text"

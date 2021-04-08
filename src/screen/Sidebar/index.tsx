@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
   const [connections] = useRecoilState(connectionAtom);
   const modalRef = useRef<IModalHandles>(null);
 
-  const handleAddConnetions = useCallback(() => {
+  const handleAddConnections = useCallback(() => {
     return modalRef.current?.toggle(true);
   }, []);
 
@@ -30,7 +30,7 @@ const Sidebar: React.FC = () => {
         <>
           <Header>
             Servers
-            <FiPlusCircle onClick={handleAddConnetions} />
+            <FiPlusCircle onClick={handleAddConnections} />
           </Header>
           {connections.map((connection) => (
             <Connection key={connection.id} connection={connection} />

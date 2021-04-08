@@ -1,8 +1,9 @@
 import { shade } from 'polished';
 import styled from 'styled-components';
 
-import Button from '@components/Button';
 import { Form as Unform } from '@unform/web';
+
+import Button from '@components/Button';
 
 export const Container = styled.div`
   flex: 1;
