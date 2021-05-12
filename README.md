@@ -53,6 +53,7 @@ yarn dev
 - [ ] Socketio compatibility
 - [ ] JSON text editor
 - [ ] Organize state
+- [ ] Use ORM with Sqlite to store connections
 - [x] WS headers
 - [x] Right-Click Connection
 - [x] Create Connection modal
