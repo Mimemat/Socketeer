@@ -4,18 +4,20 @@ import React, {
   useImperativeHandle,
   forwardRef,
 } from 'react';
-import ReactModal from 'react-modal';
+import ReactModal, { Props } from 'react-modal';
 
 import { Container } from './styles';
+
+type ModalProps = { children?: React.ReactNode } & Omit<Props, 'isOpen'>;
 
 export interface IModalHandles {
   toggle(value?: boolean): void;
 }
 
-const Modal: React.ForwardRefRenderFunction<
-  IModalHandles,
-  { children?: React.ReactNode }
-> = ({ children }, ref) => {
+const Modal: React.ForwardRefRenderFunction<IModalHandles, ModalProps> = (
+  { children, ...rest },
+  ref
+) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggle = useCallback(
@@ -31,6 +33,7 @@ const Modal: React.ForwardRefRenderFunction<
 
   return (
     <ReactModal
+      {...rest}
       appElement={document.getElementById('modal') as HTMLElement}
       shouldCloseOnEsc={true}
       onRequestClose={() => toggle(false)}

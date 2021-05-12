@@ -21,7 +21,7 @@ const icons = {
   error: <FiAlertCircle size={24} />,
 };
 
-const Toast: React.FC<ToastProps> = ({ toast, style }) => {
+const Toast: React.VFC<ToastProps> = ({ toast, style }) => {
   const { removeToast } = useToast();
 
   const closeToast = useCallback(() => removeToast(toast.id), [

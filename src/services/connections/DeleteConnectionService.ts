@@ -1,4 +1,4 @@
-import { ConnectionStore } from 'store/connnections';
+import { ConnectionStore } from 'store/connections';
 
 import { IConnection } from '@atoms/connections';
 

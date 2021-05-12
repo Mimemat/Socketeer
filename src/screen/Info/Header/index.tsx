@@ -13,7 +13,7 @@ import { updateConnection } from '../../../services/connections/UpdateConnnectio
 
 import { ConnectButton, Container, URLBar } from './styles';
 
-const Header: React.FC = () => {
+const Header: React.VFC = () => {
   const { connect, connected, disconnect, clearMsgs } = useWs();
   const { addToast } = useToast();
 
@@ -61,7 +61,15 @@ const Header: React.FC = () => {
       });
     }
     handleUpdate();
-    return connect(value);
+
+    let headers: { [key: string]: string } = {};
+    (selectedConnection?.headers || []).forEach((header) => {
+      headers = {
+        ...headers,
+        [header.key]: header.value,
+      };
+    });
+    return connect(value, headers);
   }, [connected, selectedConnection]);
 
   useEffect(() => {

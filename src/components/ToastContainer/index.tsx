@@ -12,7 +12,7 @@ interface ToastContainerProps {
   toasts: ToastMessage[];
 }
 
-const ToastContainer: React.FC<ToastContainerProps> = ({ toasts }) => {
+const ToastContainer: React.VFC<ToastContainerProps> = ({ toasts }) => {
   const visibleToasts = useMemo(() => {
     if (toasts.length > 5) {
       return toasts.slice(toasts.length - 5, toasts.length);

@@ -2,6 +2,7 @@
   "name": "socketeer",
   "author": "Mimemat <hyatomimemat@gmail.com>",
   "version": "1.0.1",
+  "license": "MIT",
   "description": "A GUI for websockets",
   "main": "./dist/main.js",
   "scripts": {
@@ -20,7 +21,6 @@
     "lint:fix": "eslint . --fix"
   },
   "keywords": [],
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-runtime": "^7.12.10",
@@ -87,6 +87,7 @@
     "@unform/core": "^2.1.5",
     "@unform/web": "^2.1.5",
     "electron-store": "^6.0.1",
+    "monaco-editor": "^0.23.0",
     "polished": "^4.0.5",
     "react": "17.0.1",
     "react-contextmenu": "^2.14.0",
@@ -113,13 +114,13 @@
       "icon": "build/icon.png",
       "target": "nsis",
       "publish": [
-          "github"
+        "github"
       ]
     },
     "linux": {
       "target": [
-          "deb",
-          "AppImage"
+        "deb",
+        "AppImage"
       ]
     },
     "directories": {

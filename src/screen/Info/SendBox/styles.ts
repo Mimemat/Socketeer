@@ -25,7 +25,7 @@ export const Content = styled.textarea`
   font-family: ${(props) => props.theme.fonts.regular};
 `;
 
-export const Title = styled.p`
+export const Title = styled.div`
   display: flex;
   justify-content: space-between;
 
@@ -36,7 +36,6 @@ export const Title = styled.p`
   padding-bottom: 4px;
 
   svg {
-    transform: rotate(45deg);
     cursor: pointer;
 
     transition: filter 0.2s ease-in;
@@ -44,5 +43,17 @@ export const Title = styled.p`
     &:hover {
       filter: brightness(80%);
     }
+  }
+
+  .send-svg {
+    transform: rotate(45deg);
+  }
+  .headers-svg {
+    margin-left: 0.8rem;
+  }
+
+  .send-headers {
+    display: flex;
+    align-items: center;
   }
 `;

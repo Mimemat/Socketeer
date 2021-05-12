@@ -11,7 +11,7 @@ import SendBox from './SendBox';
 
 import { Container, Content } from './styles';
 
-const Info: React.FC = () => {
+const Info: React.VFC = () => {
   const [selectedConnection] = useRecoilState(selectedConnectionAtom);
 
   return selectedConnection ? (

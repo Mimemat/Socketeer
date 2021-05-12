@@ -1,17 +1,18 @@
-
-<p  align="center">
+<h1  align="center">
 
 <img  src="https://i.imgur.com/kTiSx6X.png"  alt="Socketeer"  />
 
+</h1>
+
+<p align="center">
+  <img alt="License" src="https://img.shields.io/github/license/mimemat/socketeer?color=292C33&style=flat-square">
 </p>
 
-  
-
-<h3  align="center">A modern GUI for websockets</h1>
-
-  
+<h3  align="center">A modern GUI for websockets</h1>  
 
 <p  align="center">🚧 Socketeer is currently under development 🚧</p>
+
+<br>
 
  ## Table of contents
 - [Layout](#layout)
@@ -50,8 +51,9 @@ yarn dev
 
 ## To Do
 - [ ] Socketio compatibility
-- [ ] WS headers
-- [ ] Better animations
+- [ ] JSON text editor
+- [ ] Organize state
+- [x] WS headers
 - [x] Right-Click Connection
 - [x] Create Connection modal
 - [x] Connection storing

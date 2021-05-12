@@ -5,12 +5,12 @@ import { useField } from '@unform/core';
 import { Container } from './styles';
 
 interface Props {
-  label: string;
+  label?: string;
   name: string;
 }
 type InputProps = JSX.IntrinsicElements['input'] & Props;
 
-const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
+const FormInput: React.FC<InputProps> = ({ name, label, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const {
     fieldName,
@@ -28,7 +28,7 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
   }, [fieldName, registerField]);
   return (
     <Container isError={!!error} className="input">
-      <p>{label}</p>
+      {label && <p>{label}</p>}
       <input
         id={fieldName}
         ref={inputRef}
@@ -40,4 +40,4 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
     </Container>
   );
 };
-export default memo(Input);
+export default memo(FormInput);

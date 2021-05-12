@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 
 import { Container, Content } from './styles';
 
-const Screen: React.FC = () => {
+const Screen: React.VFC = () => {
   return (
     <Container>
       <Header />

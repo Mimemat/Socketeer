@@ -1,12 +1,19 @@
 import { atom } from 'recoil';
 
-import { ConnectionStore } from '../store/connnections';
+import { ConnectionStore } from '../store/connections';
+
+export interface IHeader {
+  id: string;
+  key: string;
+  value: string;
+}
 
 export interface IConnection {
   id: string;
   name: string;
   url: string;
   type: 'ws' | 'io';
+  headers: IHeader[];
 }
 
 export const connectionAtom = atom<IConnection[]>({

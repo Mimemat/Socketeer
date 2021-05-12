@@ -47,12 +47,13 @@ const ConnectionEditModal: React.ForwardRefRenderFunction<
 
     const { name, url } = data;
     const type = modalRef?.current?.selected.value as 'io' | 'ws';
-    const { id } = selectedConnection;
+    const { id, headers } = selectedConnection;
 
     const newConnections = updateConnection(id, {
       name,
       url,
       type,
+      headers,
     });
 
     if (selectedConnection.id === connection.id) {
@@ -61,6 +62,7 @@ const ConnectionEditModal: React.ForwardRefRenderFunction<
         name,
         url,
         type,
+        headers,
       });
     }
     setConnections(newConnections);

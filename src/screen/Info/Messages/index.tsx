@@ -21,7 +21,7 @@ const Messages: React.FC = () => {
   return (
     <Container>
       <Title>
-        Data log{' '}
+        Data log
         <button onClick={clearMsgs}>
           <FiX size={20} />
         </button>

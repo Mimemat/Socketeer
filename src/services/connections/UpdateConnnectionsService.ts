@@ -1,6 +1,6 @@
 import { IConnection } from '@atoms/connections';
 
-import { ConnectionStore } from '../../store/connnections';
+import { ConnectionStore } from '../../store/connections';
 
 export function updateConnection(
   id: string,

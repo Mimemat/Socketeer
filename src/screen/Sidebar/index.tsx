@@ -11,7 +11,7 @@ import ConnectionModal from './ConnectionModal';
 
 import { Container, Header } from './styles';
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.VFC = () => {
   const [connections] = useRecoilState(connectionAtom);
   const modalRef = useRef<IModalHandles>(null);
 

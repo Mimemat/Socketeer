@@ -14,7 +14,7 @@ export interface IMsg {
 export interface IWsContext {
   msgs: IMsg[];
   clearMsgs(): void;
-  connect(url: string): void;
+  connect(url: string, headers?: { [key: string]: string }): void;
   disconnect(): void;
   send(data: string): void;
   connected: boolean;
@@ -42,44 +42,46 @@ export const WsProvider: React.FC = ({ children }) => {
   const send = useCallback(
     (data: string) => {
       if (ws) {
-        console.log(data);
         ws.send(data);
       }
     },
     [ws]
   );
 
-  const connect = useCallback((url: string): void => {
-    const socket = new Ws(url);
-    setWs(socket);
+  const connect = useCallback(
+    (url: string, headers: { [key: string]: string } = {}): void => {
+      console.log(headers);
+      const socket = new Ws(url, { headers });
+      setWs(socket);
 
-    socket.on('open', () => {
-      setConnected(true);
-      console.log(`${url} connected`);
-    });
-
-    socket.on('message', (data) => {
-      setMsgs((oldMsgs) => [
-        ...oldMsgs,
-        {
-          id: uuid(),
-          data: data.toString(),
-          sentAt: new Date().toISOString(),
-        },
-      ]);
-    });
-
-    socket.on('error', (error) => {
-      setConnected(false);
-      addToast({
-        type: 'error',
-        title: 'Connection failed',
-        description: error.message,
+      socket.on('open', () => {
+        setConnected(true);
       });
-    });
 
-    socket.on('close', () => setConnected(false));
-  }, []);
+      socket.on('message', (data) => {
+        setMsgs((oldMsgs) => [
+          ...oldMsgs,
+          {
+            id: uuid(),
+            data: data.toString(),
+            sentAt: new Date().toISOString(),
+          },
+        ]);
+      });
+
+      socket.on('error', (error) => {
+        setConnected(false);
+        addToast({
+          type: 'error',
+          title: 'Connection failed',
+          description: error.message,
+        });
+      });
+
+      socket.on('close', () => setConnected(false));
+    },
+    []
+  );
 
   return (
     <WsContext.Provider

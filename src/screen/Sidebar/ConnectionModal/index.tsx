@@ -37,6 +37,7 @@ const ConnectionModal: React.ForwardRefRenderFunction<IModalHandles> = (
       name,
       url,
       type,
+      headers: [],
     });
 
     setConnections(newConnections);

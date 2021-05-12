@@ -11,7 +11,7 @@ import {
   WindowsActionButton,
 } from './styles';
 
-const Header: React.FC = () => {
+const Header: React.VFC = () => {
   const isMac = useMemo(() => os.platform() === 'darwin', []);
 
   const handleCloseWindow = useCallback(() => {
